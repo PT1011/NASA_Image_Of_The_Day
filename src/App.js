@@ -4,6 +4,7 @@ import './App.css';
 
 function App() {
     const API_KEY = process.env.REACT_APP_NASA_KEY
+    const [apod, setApod] = useState(null);
 
     useEffect(() => {
             fetch("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY)
@@ -14,25 +15,16 @@ function App() {
             return response.json();
             }
         )
-        .then((data) => console.log(data))
+        .then((data) => setApod(data))
         .catch(error => console.error(error));
     }, [])
+
+    if (apod == null) {
+        return <p>Loading...</p>
+    }
     return (
-        <div className="App">
-        <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-            Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            Learn React
-            </a>
-        </header>
+        <div className>="App"
+            <h1>{apod.title}</h1>
         </div>
     );
 }
