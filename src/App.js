@@ -5,7 +5,8 @@ const API_KEY = process.env.REACT_APP_NASA_KEY
 
 function App() {
     const [apod, setApod] = useState(null);
-    const [date, setDate] = useState(null);
+    const d = new Date();
+    const [date, setDate] = useState(d.toISOString().split('T')[0]);
 
     useEffect(() => {
             fetch("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + (date ? "&date=" + date : ""))
@@ -20,10 +21,6 @@ function App() {
         .catch(error => console.error(error));
     }, [date])
 
-    if (apod == null) {
-        return <p>Loading...</p>
-    }
-
     function handlepreviousDay() {
         const previousDate = new Date(date);
         previousDate.setDate(previousDate.getDate() - 1);
@@ -34,6 +31,10 @@ function App() {
         const nextDate = new Date(date);
         nextDate.setDate(nextDate.getDate() + 1);
         setDate(nextDate.toISOString().split('T')[0]);
+    }
+    
+    if (apod == null) {
+        return <p>Loading...</p>
     }
 
     return (
