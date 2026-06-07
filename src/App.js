@@ -1,9 +1,9 @@
-import logo from './logo.svg';
 import { useEffect, useState } from 'react';
 import './App.css';
 
+const API_KEY = process.env.REACT_APP_NASA_KEY
+
 function App() {
-    const API_KEY = process.env.REACT_APP_NASA_KEY
     const [apod, setApod] = useState(null);
 
     useEffect(() => {
