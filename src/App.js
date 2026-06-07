@@ -23,8 +23,10 @@ function App() {
         return <p>Loading...</p>
     }
     return (
-        <div className>="App"
-            <h1>{apod.title}</h1>
+        <div className="App">
+            <h1>{apod.title} {apod.date}</h1>
+            <img src={apod.url} alt={apod.title} />
+            <p>{apod.explanation}</p>
         </div>
     );
 }
