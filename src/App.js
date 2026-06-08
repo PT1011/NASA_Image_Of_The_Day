@@ -12,7 +12,9 @@ function App() {
             fetch("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + (date ? "&date=" + date : ""))
             .then(response => {
             if (response.status === 404) {
-                handlepreviousDay();
+                const errorPreviousDate = new Date(date);
+                errorPreviousDate.setDate(errorPreviousDate.getDate() - 1);
+                setDate(errorPreviousDate.toISOString().split('T')[0]);
                 throw new Error("Resource not found, fetching previous day")
             }
             else if (!response.ok){
