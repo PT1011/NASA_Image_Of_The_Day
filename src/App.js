@@ -11,12 +11,15 @@ function App() {
     useEffect(() => {
             fetch("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + (date ? "&date=" + date : ""))
             .then(response => {
-            if (!response.ok){
+            if (response.status === 404) {
+                handlepreviousDay();
+                throw new Error("Resource not found, fetching previous day")
+            }
+            else if (!response.ok){
                 throw new Error("Could not fetch resource")
             }
             return response.json();
-            }
-        )
+        })
         .then((data) => setApod(data))
         .catch(error => console.error(error));
     }, [date])
