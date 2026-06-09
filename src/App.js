@@ -46,11 +46,15 @@ function App() {
         <div className="App">
             <h1>{apod.title} {apod.date}</h1>
             <div className="content">
-                <img src={apod.url} alt={apod.title} />
-                <p>{apod.explanation}</p>
+                <div className="img">
+                    <img src={apod.url} alt={apod.title} />
+                </div>
+                <div className="explanation">
+                    <p>{apod.explanation}</p>
+                    <button className="button" onClick = {handlepreviousDay}>Previous Day</button>
+                    <button className="button" onClick = {handleNextDay}>Next Day</button>
+                </div>
             </div>
-            <button onClick = {handlepreviousDay}>Previous Day</button>
-            <button onClick = {handleNextDay}>Next Day</button>
         </div>
     );
 }
