@@ -12,12 +12,12 @@
 .content {
   display: flex;
   flex-direction: row;
+  align-items: flex-start
 }
 
 .img img {
   width: 1000px;
-  height: 1000px;
-  object-fit: contain;
+  height: auto;
 }
 
 p {
